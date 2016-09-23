@@ -21,12 +21,16 @@ switch(nodeArg){
 		songInput();
 		break;
 	case "movie-this":
-		movieInfo();
+		movieInput();
 		break;
 	case "do-what-it-says":
 		doItToIt();
 		break;
 }
+
+// line variable for terminal divisions
+var line = "*********************************************";
+
 
 // Twitter npm
 
@@ -39,6 +43,8 @@ function listTweets(){
 	});
 }
 
+//Spotify npm
+
 function songInput(){
 	var userInput = "the sign ace of base";
 		if(process.argv.length > 3){
@@ -49,15 +55,19 @@ function songInput(){
 
 function songInfo(trackName){
 	spotify.search({ type: 'track', query: trackName }, function(err, data) {
-    	if ( err ) {
+		var artist = data.tracks.items[0].artists[0].name;
+		var songName = data.tracks.items[0].name;
+		var preview = data.tracks.items[0].preview_url;
+		var album = data.tracks.items[0].album.name;
+		var songResult = "Artist: " + artist + "\nSong: " + songName + "\nPreview: " + preview + "\nAlbum: " + album;
+    	if (err) {
         	console.log('Error occurred: ' + err);
         	return;
     	}
     	else{
-    		console.log(data.tracks.items[0].artists[0].name);
+    		console.log(line);
+    		console.log(songResult);
+    		console.log(line);
     	}
-
-    // Do something with 'data' 
-
 	});
 }
