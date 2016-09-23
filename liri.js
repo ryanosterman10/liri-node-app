@@ -38,7 +38,12 @@ function listTweets(){
 	var params = {screen_name: 'ryan_osterman10'};
 	client.get('statuses/user_timeline', params, function(error, tweets, response){
 		if(!error){
-			console.log(tweets);
+			for(i in tweets){
+				var tweetResult = tweets[i].created_at + ": " + tweets[i].text;
+				console.log(line);
+				console.log(tweetResult);
+				console.log(line);
+			}
 		}
 	});
 }
@@ -72,6 +77,8 @@ function songInfo(trackName){
 	});
 }
 
+//Request npm to OMDB API
+
 function movieInput(){
 	var userInputMovie = "Mr Nobody";
 	if(process.argv.length > 3){
@@ -88,6 +95,23 @@ function movieInfo(movieName){
 			console.log(line);
 			console.log(movieResult);
 			console.log(line);
+		}
+	});
+}
+
+//Do It using text from random.txt
+
+function doItToIt(){
+	fs.readFile('random.txt', 'utf-8', function(err, data){
+		var doItArray = data.trim().split(',');
+		if(doItArray[0] == 'spotify-this-song'){
+			songInfo(doItArray[1]);
+		}
+		else if(doItArray[0] == 'movie-this'){
+			movieInfo(doItArray[1]);
+		}
+		else if(doItArray[0] == 'my-tweets'){
+			listTweets();
 		}
 	});
 }
