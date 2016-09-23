@@ -18,7 +18,7 @@ switch(nodeArg){
 		listTweets();
 		break;
 	case "spotify-this-song":
-		songInfo();
+		songInput();
 		break;
 	case "movie-this":
 		movieInfo();
@@ -36,5 +36,28 @@ function listTweets(){
 		if(!error){
 			console.log(tweets);
 		}
+	});
+}
+
+function songInput(){
+	var userInput = "the sign ace of base";
+		if(process.argv.length > 3){
+			userInput = process.argv[3];
+		}
+		songInfo(userInput);
+}
+
+function songInfo(trackName){
+	spotify.search({ type: 'track', query: trackName }, function(err, data) {
+    	if ( err ) {
+        	console.log('Error occurred: ' + err);
+        	return;
+    	}
+    	else{
+    		console.log(data.tracks.items[0].artists[0].name);
+    	}
+
+    // Do something with 'data' 
+
 	});
 }
