@@ -29,7 +29,7 @@ switch(nodeArg){
 }
 
 // line variable for terminal divisions
-var line = "*********************************************";
+var line = "********************************************************************";
 
 
 // Twitter npm
@@ -46,11 +46,11 @@ function listTweets(){
 //Spotify npm
 
 function songInput(){
-	var userInput = "the sign ace of base";
+	var userInputSong = "the sign ace of base";
 		if(process.argv.length > 3){
-			userInput = process.argv[3];
+			userInputSong = process.argv[3];
 		}
-		songInfo(userInput);
+		songInfo(userInputSong);
 }
 
 function songInfo(trackName){
@@ -71,3 +71,25 @@ function songInfo(trackName){
     	}
 	});
 }
+
+function movieInput(){
+	var userInputMovie = "Mr Nobody";
+	if(process.argv.length > 3){
+		userInputMovie = process.argv[3]
+	}
+	movieInfo(userInputMovie);
+}
+
+function movieInfo(movieName){
+	request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&r=json", function(error, response, body){
+		if(!error && response.statusCode == 200){
+			var result = JSON.parse(body);
+			var movieResult = "Title: " + result.Title + "\nYear: " + result.Year + "\nIMBD Rating: " + result.imdbRating + "\nCountry: " + result.Country + "\nLanguage: " + result.Language + "\nPlot: " + result.Plot + "\nActors: " + result.Actors + "\nRotten Tomatoes Rating: " + result.tomatoRating + "\nRotten Tomatoes URL: " + result.tomatoURL;
+			console.log(line);
+			console.log(movieResult);
+			console.log(line);
+		}
+	});
+}
+
+
