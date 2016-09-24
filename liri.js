@@ -41,7 +41,9 @@ function listTweets(){
 			for(i in tweets){
 				var tweetResult = tweets[i].created_at + ": " + tweets[i].text;
 				console.log(line);
+				console.log("");
 				console.log(tweetResult);
+				console.log("");
 				console.log(line);
 			}
 		}
@@ -71,7 +73,9 @@ function songInfo(trackName){
     	}
     	else{
     		console.log(line);
+    		console.log("");
     		console.log(songResult);
+    		console.log("");
     		console.log(line);
     	}
 	});
@@ -93,7 +97,9 @@ function movieInfo(movieName){
 			var result = JSON.parse(body);
 			var movieResult = "Title: " + result.Title + "\nYear: " + result.Year + "\nIMBD Rating: " + result.imdbRating + "\nCountry: " + result.Country + "\nLanguage: " + result.Language + "\nPlot: " + result.Plot + "\nActors: " + result.Actors + "\nRotten Tomatoes Rating: " + result.tomatoRating + "\nRotten Tomatoes URL: " + result.tomatoURL;
 			console.log(line);
+			console.log("");
 			console.log(movieResult);
+			console.log("");
 			console.log(line);
 		}
 	});
