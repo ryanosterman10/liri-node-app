@@ -77,6 +77,7 @@ function songInfo(trackName){
     		console.log(songResult);
     		console.log("");
     		console.log(line);
+    		logThis();
     	}
 	});
 }
@@ -101,6 +102,7 @@ function movieInfo(movieName){
 			console.log(movieResult);
 			console.log("");
 			console.log(line);
+			logThis();
 		}
 	});
 }
@@ -122,4 +124,7 @@ function doItToIt(){
 	});
 }
 
+function logThis(){
+	fs.appendFile('log.txt', nodeArg + ": " + process.argv[3] + "\n");
+}
 
